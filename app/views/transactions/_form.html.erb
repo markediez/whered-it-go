@@ -18,7 +18,12 @@
 
   <div class="field">
     <%= f.label :value %>
-    <%= f.text_field :value %>
+    <%= f.number_field :value, step: "0.01" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :category %>
+	<%= f.select :category_id, Category.all.collect { |c| [c.name, c.id] }, include_blank: true %>
   </div>
 
   <div class="actions">
