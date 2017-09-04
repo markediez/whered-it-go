@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get "/", to: 'site#index'
+  root 'site#index'
 
   resources :transactions
   resources :categories

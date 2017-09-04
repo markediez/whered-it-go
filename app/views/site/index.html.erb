@@ -6,7 +6,7 @@
   <% @categories.each do |category| %>
     <tr>
       <td><%= category.name %></td>
-      <td>$<%= category.budget %></td>
+      <td><%= number_to_currency category.budget %></td>
       <td><%= link_to 'Edit', edit_category_path(category) %></td>
       <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
     </tr>
@@ -23,21 +23,24 @@
 
 <h1>Transactions</h1>
 <table>
-    <th>Category</th>
-    <th>Name</th>
-    <th>Value</th>
-    <th colspan="2"></th>
+  <th>Type</th>
+  <th>Category</th>
+  <th>Name</th>
+  <th>Value</th>
+  <th colspan="2"></th>
   <% @transactions.each do |transaction| %>
     <tr>
+      <td><%= transaction.payment_type %></td>
       <td><%= transaction.category.nil? ? "None" : transaction.category.name %></td>
       <td><%= transaction.name %></td>
-      <td>$<%= transaction.value %></td>
+      <td><%= number_to_currency transaction.value %></td>
       <td><%= link_to 'Edit', edit_transaction_path(transaction) %></td>
       <td><%= link_to 'Destroy', transaction, method: :delete, data: { confirm: 'Are you sure?' } %></td>
     </tr>
   <% end %>
   <%= form_for Transaction.new do |f| %>
     <tr>
+      <td><%= f.select :payment_type, ["PAY", "EARN"], include_blank: false %>
       <td><%= f.select :category_id, Category.all.collect { |c| [c.name, c.id] }, include_blank: true %></td>
       <td><%= f.text_field :name %></td>
       <td><%= f.number_field :value, step: "0.01" %></td>
