@@ -1,21 +1,44 @@
+<p id="notice"><%= notice %></p>
+
 <h1>Reminders</h1>
 <table>
   <th>Status</th>
   <th>Name</th>
-  <th colspan="3"></th>
+  <th>Link</th>
+  <th colspan="4"></th>
+  <% @reminders.each do |reminder| %>
+    <tr>
+      <td><%= reminder.status %></td>
+      <td><%= reminder.name %></td>
+      <td><%= link_to reminder.url, "http://#{reminder.url}", target: "_blank" %></td>
+      <td><%= link_to 'Edit', edit_reminder_path(reminder) %></td>
+      <td><%= link_to 'Finish', reminder_path(reminder, reminder: { archived: true, status: true }), method: :put %></td>
+      <td><%= link_to 'Archive', reminder_path(reminder, reminder: { archived: true } ), method: :put %></td>
+      <td><%= link_to 'Destroy', reminder, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+  <%= form_for Reminder.new do |f| %>
+    <tr>
+      <td></td>
+      <td><%= f.text_field :name %></td>
+      <td><%= f.text_field :url %></td>
+      <td><%= f.text_field :frequency %></td>
+      <td colspan="3"><%= f.submit %></td>
+    </tr>
+  <% end %>
 </table>
 
 <h1>Categories</h1>
 <table>
-    <th>Category</th>
-    <th>Budget</th>
-    <th colspan="2"></th>
+  <th>Category</th>
+  <th>Budget</th>
+  <th colspan="2"></th>
   <% @categories.each do |category| %>
     <tr>
       <td><%= category.name %></td>
       <td><%= number_to_currency category.budget %></td>
       <td><%= link_to 'Edit', edit_category_path(category) %></td>
-      <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td><%= link_to 'Destroy', category, method: :update, data: { confirm: 'Are you sure?' } %></td>
     </tr>
   <% end %>
   <%= form_for Category.new do |f| %>
