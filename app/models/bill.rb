@@ -3,6 +3,14 @@ class Bill < ApplicationRecord
   belongs_to :reminder, required: false
   before_validation :add_url_protocol
 
+  def paid?
+    total_paid = 0
+    self.transactions.each do |transaction|
+      total_paid = transaction.payment? ? total_paid + transaction.amount : total_paid - transaction.amount
+    end
+
+    return total_paid >= self.amount
+  end
 
   protected
   def add_url_protocol
