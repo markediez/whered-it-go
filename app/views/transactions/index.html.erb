@@ -17,7 +17,7 @@
       <tr>
         <td><%= transaction.category.nil? ? "None" : transaction.category.name  %></td>
         <td><%= transaction.name %></td>
-        <td><%= transaction.value %></td>
+        <td><%= transaction.amount %></td>
         <td><%= link_to 'Show', transaction %></td>
         <td><%= link_to 'Edit', edit_transaction_path(transaction) %></td>
         <td><%= link_to 'Destroy', transaction, method: :delete, data: { confirm: 'Are you sure?' } %></td>

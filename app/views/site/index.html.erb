@@ -109,7 +109,7 @@
   <th>Type</th>
   <th>Category</th>
   <th>Name</th>
-  <th>Value</th>
+  <th>Amount</th>
   <th>Bill</th>
   <th colspan="2"></th>
   <% @transactions.each do |transaction| %>
@@ -117,7 +117,7 @@
       <td><%= transaction.payment_type %></td>
       <td><%= transaction.category.nil? ? "None" : transaction.category.name %></td>
       <td><%= transaction.name %></td>
-      <td><%= number_to_currency transaction.value %></td>
+      <td><%= number_to_currency transaction.amount %></td>
       <td><%= transaction.bill.nil? ? "-" : transaction.bill.name %></td>
       <td><%= link_to 'Edit', edit_transaction_path(transaction) %></td>
       <td><%= link_to 'Destroy', transaction, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -128,7 +128,7 @@
       <td><%= f.select :payment_type, ["PAY", "EARN"], include_blank: false %>
       <td><%= f.select :category_id, Category.all.collect { |c| [c.name, c.id] }, include_blank: true %></td>
       <td><%= f.text_field :name %></td>
-      <td><%= f.number_field :value, step: "0.01" %></td>
+      <td><%= f.number_field :amount, step: "0.01" %></td>
       <td><%= f.select :bill_id, Bill.all.collect { |b| [b.name, b.id] }, include_blank: true %></td>
       <td colspan="2"><%= f.submit %></td>
     </tr>
