@@ -10,14 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170910160137) do
+ActiveRecord::Schema.define(version: 20170910163304) do
 
   create_table "bills", force: :cascade do |t|
     t.string   "name"
     t.float    "amount"
     t.integer  "reminder_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.string   "url",         default: "#"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -29,7 +30,6 @@ ActiveRecord::Schema.define(version: 20170910160137) do
 
   create_table "reminders", force: :cascade do |t|
     t.string   "name"
-    t.string   "url",        default: "#"
     t.string   "frequency"
     t.boolean  "archived",   default: false
     t.boolean  "status",     default: false
