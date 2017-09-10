@@ -1,16 +1,43 @@
 <p id="notice"><%= notice %></p>
+<% unless @errors.nil? %>
+  <div id="errors">
+      <% @errors.keys.each do |error| %>
+        <h4><%= error %></h4>
+        <ul>
+        <% @errors[error].each do |reason| %>
+          <li><span><%= reason %></span></li>
+        <% end %>
+        </ul>
+      <% end %>
+  </div>
+<% end %>
+
+<h1>Report</h1>
+<table>
+  <th>Date</th>
+  <th>Budget</th>
+  <th>Expense</th>
+  <th>Comment</th>
+
+  <tr>
+    <td><%= Time.now.strftime "%m/%Y" %></td>
+    <td><%= number_to_currency get_total_budget %></td>
+    <td><%= number_to_currency get_total_expense %></td>
+    <td><%= get_comment get_total_budget, get_total_expense %></td>
+  </tr>
+</table>
 
 <h1>Reminders</h1>
 <table>
   <th>Status</th>
   <th>Name</th>
-  <th>Link</th>
+  <th>Frequency</th>
   <th colspan="4"></th>
   <% @reminders.each do |reminder| %>
     <tr>
       <td><%= reminder.status %></td>
       <td><%= reminder.name %></td>
-      <td><%= link_to reminder.url, "http://#{reminder.url}", target: "_blank" %></td>
+      <td><%= reminder.frequency %></td>
       <td><%= link_to 'Edit', edit_reminder_path(reminder) %></td>
       <td><%= link_to 'Finish', reminder_path(reminder, reminder: { archived: true, status: true }), method: :put %></td>
       <td><%= link_to 'Archive', reminder_path(reminder, reminder: { archived: true } ), method: :put %></td>
@@ -21,7 +48,6 @@
     <tr>
       <td></td>
       <td><%= f.text_field :name %></td>
-      <td><%= f.text_field :url %></td>
       <td><%= f.text_field :frequency %></td>
       <td colspan="3"><%= f.submit %></td>
     </tr>

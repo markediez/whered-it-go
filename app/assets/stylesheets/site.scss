@@ -1,3 +1,12 @@
 // Place all the styles related to the site controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+#errors {
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 1px solid #d1d1d1;
+  ul {
+    margin-top: 0 15px;
+  }
+}

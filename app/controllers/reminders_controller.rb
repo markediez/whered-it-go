@@ -31,7 +31,8 @@ class RemindersController < ApplicationController
         format.html { redirect_to root_url, notice: 'Reminder was successfully created.' }
         format.json { render :show, status: :created, location: @reminder }
       else
-        format.html { render :new }
+        flash[:error] = @reminder.errors
+        format.html { redirect_to root_url }
         format.json { render json: @reminder.errors, status: :unprocessable_entity }
       end
     end
@@ -45,8 +46,8 @@ class RemindersController < ApplicationController
         format.html { redirect_to root_url, notice: 'Reminder was successfully updated.' }
         format.json { render :show, status: :ok, location: @reminder }
       else
-        format.html { render :edit }
-        format.json { render json: @reminder.errors, status: :unprocessable_entity }
+        # format.html { render :edit }
+        # format.json { render json: @reminder.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -69,6 +70,6 @@ class RemindersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def reminder_params
-      params.require(:reminder).permit(:name, :url, :frequency, :archived, :status)
+      params.require(:reminder).permit(:name, :frequency, :archived, :status)
     end
 end
