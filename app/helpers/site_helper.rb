@@ -8,7 +8,7 @@ module SiteHelper
 
   def get_total_expense
     expense = 0
-    Transaction.where(payment_type: :PAY).map { |t| expense += t.value }
+    Transaction.where(payment_type: :PAY).map { |t| expense += t.amount }
 
     return expense
   end
