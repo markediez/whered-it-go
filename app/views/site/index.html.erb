@@ -31,13 +31,11 @@
 <table>
   <th>Status</th>
   <th>Name</th>
-  <th>Frequency</th>
   <th colspan="4"></th>
   <% @reminders.each do |reminder| %>
     <tr>
       <td><%= reminder.status %></td>
       <td><%= reminder.name %></td>
-      <td><%= reminder.frequency %></td>
       <td><%= link_to 'Edit', edit_reminder_path(reminder) %></td>
       <td><%= link_to 'Finish', reminder_path(reminder, reminder: { archived: true, status: true }), method: :put %></td>
       <td><%= link_to 'Archive', reminder_path(reminder, reminder: { archived: true } ), method: :put %></td>
@@ -48,7 +46,6 @@
     <tr>
       <td></td>
       <td><%= f.text_field :name %></td>
-      <td><%= f.text_field :frequency %></td>
       <td colspan="3"><%= f.submit %></td>
     </tr>
   <% end %>
