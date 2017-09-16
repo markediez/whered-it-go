@@ -1,0 +1,2 @@
+module ReminderTemplatesHelper
+end

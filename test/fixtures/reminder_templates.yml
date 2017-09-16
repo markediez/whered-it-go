@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  frequency: MyString
+  triggered_at: 2017-09-16 11:01:49
+
+two:
+  name: MyString
+  frequency: MyString
+  triggered_at: 2017-09-16 11:01:49

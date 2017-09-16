@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170910215755) do
+ActiveRecord::Schema.define(version: 20170916180435) do
+
+  create_table "bill_templates", force: :cascade do |t|
+    t.string   "name"
+    t.float    "amount"
+    t.integer  "reminder_template_id"
+    t.string   "url"
+    t.datetime "triggered_at"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
 
   create_table "bills", force: :cascade do |t|
     t.string   "name"
@@ -26,6 +36,14 @@ ActiveRecord::Schema.define(version: 20170910215755) do
     t.decimal  "budget"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "reminder_templates", force: :cascade do |t|
+    t.string   "name"
+    t.string   "frequency"
+    t.datetime "triggered_at"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "reminders", force: :cascade do |t|

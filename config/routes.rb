@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :bill_templates
+  resources :reminder_templates
   resources :bills
   resources :reminders
   root 'site#index'

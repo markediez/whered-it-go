@@ -1,0 +1,42 @@
+<%= form_for(bill_template) do |f| %>
+  <% if bill_template.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(bill_template.errors.count, "error") %> prohibited this bill_template from being saved:</h2>
+
+      <ul>
+      <% bill_template.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :amount %>
+    <%= f.text_field :amount %>
+  </div>
+
+  <div class="field">
+    <%= f.label :reminder_template_id %>
+    <%= f.number_field :reminder_template_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :url %>
+    <%= f.text_field :url %>
+  </div>
+
+  <div class="field">
+    <%= f.label :triggered_at %>
+    <%= f.datetime_select :triggered_at %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

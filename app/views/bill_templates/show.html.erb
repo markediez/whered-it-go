@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @bill_template.name %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @bill_template.amount %>
+</p>
+
+<p>
+  <strong>Reminder template:</strong>
+  <%= @bill_template.reminder_template_id %>
+</p>
+
+<p>
+  <strong>Url:</strong>
+  <%= @bill_template.url %>
+</p>
+
+<p>
+  <strong>Triggered at:</strong>
+  <%= @bill_template.triggered_at %>
+</p>
+
+<%= link_to 'Edit', edit_bill_template_path(@bill_template) %> |
+<%= link_to 'Back', bill_templates_path %>

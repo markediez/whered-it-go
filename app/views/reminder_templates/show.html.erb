@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @reminder_template.name %>
+</p>
+
+<p>
+  <strong>Frequency:</strong>
+  <%= @reminder_template.frequency %>
+</p>
+
+<p>
+  <strong>Triggered at:</strong>
+  <%= @reminder_template.triggered_at %>
+</p>
+
+<%= link_to 'Edit', edit_reminder_template_path(@reminder_template) %> |
+<%= link_to 'Back', reminder_templates_path %>

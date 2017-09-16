@@ -1,0 +1,32 @@
+<%= form_for(reminder_template) do |f| %>
+  <% if reminder_template.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(reminder_template.errors.count, "error") %> prohibited this reminder_template from being saved:</h2>
+
+      <ul>
+      <% reminder_template.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :frequency %>
+    <%= f.text_field :frequency %>
+  </div>
+
+  <div class="field">
+    <%= f.label :triggered_at %>
+    <%= f.datetime_select :triggered_at %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

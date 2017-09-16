@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  amount: 1.5
+  reminder_template_id: 1
+  url: MyString
+  triggered_at: 2017-09-16 11:04:35
+
+two:
+  name: MyString
+  amount: 1.5
+  reminder_template_id: 1
+  url: MyString
+  triggered_at: 2017-09-16 11:04:35

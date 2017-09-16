@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Reminder Templates</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Frequency</th>
+      <th>Triggered at</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @reminder_templates.each do |reminder_template| %>
+      <tr>
+        <td><%= reminder_template.name %></td>
+        <td><%= reminder_template.frequency %></td>
+        <td><%= reminder_template.triggered_at %></td>
+        <td><%= link_to 'Show', reminder_template %></td>
+        <td><%= link_to 'Edit', edit_reminder_template_path(reminder_template) %></td>
+        <td><%= link_to 'Destroy', reminder_template, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Reminder Template', new_reminder_template_path %>
