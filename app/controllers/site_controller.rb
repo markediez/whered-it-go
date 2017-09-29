@@ -7,4 +7,8 @@ class SiteController < ApplicationController
     @errors = flash[:error]
 
   end
+
+  def templates
+    @reminder_templates = ReminderTemplate.all
+  end
 end

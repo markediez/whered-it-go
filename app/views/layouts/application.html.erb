@@ -9,6 +9,10 @@
   </head>
 
   <body>
+    <ul>
+      <li><%= link_to "Dashboard", root_url %></li>
+      <li><%= link_to "Manage Reminders", "/templates" %></li>
+    </ul>
     <%= yield %>
   </body>
 </html>

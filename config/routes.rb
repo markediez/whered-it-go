@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :bills
   resources :reminders
   root 'site#index'
+  get '/templates', to: 'site#templates'
 
   resources :transactions
   resources :categories
