@@ -2,6 +2,8 @@ class ReminderTemplate < ApplicationRecord
   has_many :bill_templates
   validate :frequency_is_cron
 
+  accepts_nested_attributes_for :bill_templates
+
   private
   # Frequency is in CRONTAB format without MINUTE and HOUR
   # DayOfMonth MonthOfYear DayOfWeek

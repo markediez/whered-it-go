@@ -1,0 +1,13 @@
+
+<div class="form-group">
+  <table>
+    <th>Bill</th>
+    <th>Cost</th>
+    <th>URL</th>
+    <tr>
+      <td><%= f.text_field :name %></td>
+      <td><%= f.number_field :amount, step: "0.01" %></td>
+      <td><%= f.text_field :url %></td>
+    </tr>
+  </table>
+</div>

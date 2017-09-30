@@ -14,3 +14,17 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+// https://www.pluralsight.com/guides/ruby-ruby-on-rails/ruby-on-rails-nested-attributes#411TiKX2BPPcVKwK.99
+$(document).on('turbolinks:load', function() {
+  $('[data-form-prepend]').click( function(e) {
+    var obj = $( $(this).attr('data-form-prepend') );
+    obj.find('input, select, textarea').each( function() {
+      $(this).attr( 'name', function() {
+        return $(this).attr('name').replace( 'new_record', (new Date()).getTime() );
+      });
+    });
+    obj.insertBefore( this );
+    return false; }
+  );
+});

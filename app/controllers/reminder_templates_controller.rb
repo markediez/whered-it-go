@@ -69,6 +69,6 @@ class ReminderTemplatesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def reminder_template_params
-      params.require(:reminder_template).permit(:name, :frequency, :triggered_at)
+      params.require(:reminder_template).permit(:name, :frequency, :triggered_at, :bill_templates_attributes => [:id, :_delete, :name, :amount, :url])
     end
 end

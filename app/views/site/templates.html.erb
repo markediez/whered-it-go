@@ -1,0 +1,60 @@
+<h1>Add Reminder</h1>
+<%= form_for ReminderTemplate.new do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.label :frequency %>
+  <%= f.text_field :frequency %>
+
+  <div class="form-group">
+  <%= f.fields_for :bill_templates do |builder| %>
+    <%= render partial: 'bill_template_fields', locals: { f: builder } %>
+  <% end %>
+    <%= link_to_add_fields 'Add Bills', f, :bill_templates %>
+    <%= f.submit %>
+  </div>
+
+<% end %>
+
+<h1>Recurring Reminders</h1>
+<table>
+  <th>Name</th>
+  <th>Frequency</th>
+  <th># Bills</th>
+  <th>Triggered</th>
+  <th colspan=3></th>
+
+  <% @reminder_templates.each do |rt| %>
+  <tr>
+    <td><%= rt.name %></td>
+    <td><%= rt.frequency %></td>
+    <td><%= rt.bill_templates.size %></td>
+    <td><%= rt.triggered_at %></td>
+    <td><a href="#">Trigger</a></td>
+    <td><%= link_to 'Edit', edit_reminder_template_path(rt) %></td>
+    <td><%= link_to 'Destroy', rt, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+  <% end %>
+
+</table>
+
+<h1>Bill Templates</h1>
+<table>
+  <th>Reminder</th>
+  <th>Name</th>
+  <th>Amount</th>
+  <th>URL</th>
+  <th colspan=2></th>
+  <% @reminder_templates.each do |rt| %>
+    <% rt.bill_templates.each do |bt| %>
+      <tr>
+        <td><%= rt.name %></td>
+        <td><%= bt.name %></td>
+        <td><%= bt.amount %></td>
+        <td><%= bt.url %></td>
+        <td><%= link_to 'Edit', edit_bill_template_path(bt) %></td>
+        <td><%= link_to 'Destroy', bt, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  <% end %>
+</table>
