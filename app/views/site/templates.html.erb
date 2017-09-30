@@ -50,7 +50,7 @@
       <tr>
         <td><%= rt.name %></td>
         <td><%= bt.name %></td>
-        <td><%= bt.amount %></td>
+        <td><%= number_to_currency bt.amount %></td>
         <td><%= bt.url %></td>
         <td><%= link_to 'Edit', edit_bill_template_path(bt) %></td>
         <td><%= link_to 'Destroy', bt, method: :delete, data: { confirm: 'Are you sure?' } %></td>
