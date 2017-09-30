@@ -30,7 +30,7 @@
     <td><%= rt.frequency %></td>
     <td><%= rt.bill_templates.size %></td>
     <td><%= rt.triggered_at %></td>
-    <td><a href="#">Trigger</a></td>
+    <td><%= link_to 'Trigger', "#{reminder_template_path(rt)}/trigger", :method => 'post' %></td>
     <td><%= link_to 'Edit', edit_reminder_template_path(rt) %></td>
     <td><%= link_to 'Destroy', rt, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>

@@ -1,5 +1,5 @@
 class ReminderTemplatesController < ApplicationController
-  before_action :set_reminder_template, only: [:show, :edit, :update, :destroy]
+  before_action :set_reminder_template, only: [:show, :edit, :update, :destroy, :trigger]
 
   # GET /reminder_templates
   # GET /reminder_templates.json
@@ -19,6 +19,17 @@ class ReminderTemplatesController < ApplicationController
 
   # GET /reminder_templates/1/edit
   def edit
+  end
+
+  # POST /reminder_templates/1/trigger
+  def trigger
+    respond_to do |format|
+      if @reminder_template.trigger
+        format.html {
+          redirect_to root_url, notice: 'Reminder template was successfully triggered.'
+        }
+      end
+    end
   end
 
   # POST /reminder_templates

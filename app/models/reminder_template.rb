@@ -4,6 +4,21 @@ class ReminderTemplate < ApplicationRecord
 
   accepts_nested_attributes_for :bill_templates
 
+  def trigger
+    reminder_instance = Reminder.new(name: self.name)
+
+    if reminder_instance.save
+      self.bill_templates.each do |bill_template|
+        bill_instance = Bill.new(name: bill_template.name, amount: bill_template.amount, url: bill_template.url)
+        bill_instance.reminder = reminder_instance
+        bill_instance.save!
+      end
+    end
+
+    self.triggered_at = Time.now
+    self.save!
+  end
+
   private
   # Frequency is in CRONTAB format without MINUTE and HOUR
   # DayOfMonth MonthOfYear DayOfWeek

@@ -3,8 +3,10 @@ Rails.application.routes.draw do
   resources :reminder_templates
   resources :bills
   resources :reminders
+
   root 'site#index'
   get '/templates', to: 'site#templates'
+  post '/reminder_templates/:id/trigger', to: 'reminder_templates#trigger'
 
   resources :transactions
   resources :categories
