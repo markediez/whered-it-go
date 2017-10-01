@@ -103,6 +103,7 @@
 
 <h1>Transactions</h1>
 <table>
+  <th>Date</th>
   <th>Type</th>
   <th>Category</th>
   <th>Name</th>
@@ -111,6 +112,7 @@
   <th colspan="2"></th>
   <% @transactions.each do |transaction| %>
     <tr>
+      <td><%= transaction.created_at.strftime("%m/%d/%Y") %></td>
       <td><%= transaction.payment_type %></td>
       <td><%= transaction.category.nil? ? "None" : transaction.category.name %></td>
       <td><%= transaction.name %></td>
@@ -122,6 +124,7 @@
   <% end %>
   <%= form_for Transaction.new do |f| %>
     <tr>
+      <td></td>
       <td><%= f.select :payment_type, ["PAY", "EARN"], include_blank: false %>
       <td><%= f.select :category_id, Category.all.collect { |c| [c.name, c.id] }, include_blank: true %></td>
       <td><%= f.text_field :name %></td>
