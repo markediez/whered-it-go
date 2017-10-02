@@ -15,7 +15,7 @@ class ReminderTemplate < ApplicationRecord
       end
     end
 
-    self.triggered_at = Time.now
+    self.triggered_at = DateTime.now
     self.save!
   end
 
