@@ -1,4 +1,11 @@
 module SiteHelper
+  def get_date_range(from=nil, till=nil)
+    from = DateTime.now.beginning_of_month if from == nil
+    till = DateTime.now.end_of_month if till == nil
+
+    return from..till
+  end
+
   def get_total_budget
     budget = 0
     Category.all.map { |c| budget += c.budget unless c.budget.nil? }
@@ -9,7 +16,7 @@ module SiteHelper
   def get_total_expense
     curr_date = DateTime.now
     expense = 0
-    Transaction.where(payment_type: :PAY).where(created_at: curr_date.beginning_of_month..curr_date.end_of_month ).map { |t| expense += t.amount }
+    Transaction.where(payment_type: :PAY).where(created_at: get_date_range ).map { |t| expense += t.amount }
 
     return expense
   end

@@ -83,11 +83,13 @@
 <table>
   <th>Category</th>
   <th>Budget</th>
+  <th>Funds</th>
   <th colspan="2"></th>
   <% @categories.each do |category| %>
     <tr>
       <td><%= category.name %></td>
       <td><%= number_to_currency category.budget %></td>
+      <td><%= number_to_currency category.funds %></td>
       <td><%= link_to 'Edit', edit_category_path(category) %></td>
       <td><%= link_to 'Destroy', category, method: :update, data: { confirm: 'Are you sure?' } %></td>
     </tr>
