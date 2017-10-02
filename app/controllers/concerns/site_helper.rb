@@ -26,4 +26,16 @@ module SiteHelper
 
     return message
   end
+
+  def trigger_templates(date)
+    ReminderTemplate.all.each do |rt|
+      # DAY MONTH YEAR
+      cron = rt.frequency.split " "
+      supposed_trigger_date = DateTime.now.change(hour: 0, minute: 0, second: 0)
+      supposed_trigger_date.change(day: cron[0].to_i) unless cron[0] == "*"
+      supposed_trigger_date.change(month: cron[1].to_i) unless cron[1] == "*"
+
+      rt.trigger if rt.triggered_at < supposed_trigger_date
+    end
+  end
 end
