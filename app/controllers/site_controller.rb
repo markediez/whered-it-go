@@ -1,4 +1,6 @@
 class SiteController < ApplicationController
+  include SiteHelper
+  
   def index
     @categories = Category.all
     @transactions = Transaction.all
@@ -6,6 +8,7 @@ class SiteController < ApplicationController
     @bills = Bill.all
     @errors = flash[:error]
 
+    trigger_templates(DateTime.now)
   end
 
   def templates
