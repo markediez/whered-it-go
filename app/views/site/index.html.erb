@@ -91,7 +91,7 @@
       <td><%= number_to_currency category.budget %></td>
       <td><%= number_to_currency category.funds %></td>
       <td><%= link_to 'Edit', edit_category_path(category) %></td>
-      <td><%= link_to 'Destroy', category, method: :update, data: { confirm: 'Are you sure?' } %></td>
+      <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
     </tr>
   <% end %>
   <%= form_for Category.new do |f| %>

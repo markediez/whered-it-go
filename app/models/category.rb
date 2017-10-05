@@ -3,14 +3,19 @@ class Category < ApplicationRecord
 	has_many :transactions
 
 	def funds
-		return nil if self.budget.nil? 
+		self.budget = 0 if self.budget.nil?
 
 		transactions = Transaction.where({
 			:created_at => DateTime.now.beginning_of_month..DateTime.now.end_of_month,
-			:payment_type => :PAY,
 			:category_id => self.id
 		})
 
-		return self.budget - transactions.inject(0){ |spent, t| spent + t.amount }
+		activity = 0
+		transactions.each do |t|
+			activity += t.amount if t.payment_type == "PAY"
+			activity -= t.amount if t.payment_type == "EARN"
+		end
+
+		return self.budget - activity
 	end
 end
