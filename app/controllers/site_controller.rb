@@ -1,9 +1,10 @@
 class SiteController < ApplicationController
   include SiteHelper
-  
+
   def index
-    @categories = Category.all
     @transactions = Transaction.all
+    @budgets = Category.where(:category_type => "BUDGET")
+    @goals = Category.where(:category_type => "GOAL")
     @reminders = Reminder.where archived: false
     @bills = Bill.all
     @errors = flash[:error]

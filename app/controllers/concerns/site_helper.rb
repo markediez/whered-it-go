@@ -1,4 +1,12 @@
 module SiteHelper
+  def get_goal_progress(goal)
+    transactions = Transaction.where(:category_id => goal.id).where(:created_at => get_date_range(goal.created_at, DateTime.now))
+
+    progress = 0
+    transactions.map { |t| progress += t.amount }
+    return progress
+  end
+
   def get_date_range(from=nil, till=nil)
     from = DateTime.now.beginning_of_month if from == nil
     till = DateTime.now.end_of_month if till == nil
@@ -8,7 +16,7 @@ module SiteHelper
 
   def get_total_budget
     budget = 0
-    Category.all.map { |c| budget += c.budget unless c.budget.nil? }
+    Category.where(:category_type => :BUDGET).map { |c| budget += c.amount unless c.amount.nil? }
 
     return budget
   end
@@ -41,7 +49,7 @@ module SiteHelper
       supposed_trigger_date = DateTime.now.change(hour: 0, minute: 0, second: 0)
       supposed_trigger_date = supposed_trigger_date.change(day: cron[0].to_i) unless cron[0] == "*"
       supposed_trigger_date = supposed_trigger_date.change(month: cron[1].to_i) unless cron[1] == "*"
-      
+
       rt.trigger if rt.triggered_at < supposed_trigger_date
     end
   end

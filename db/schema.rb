@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171001223834) do
+ActiveRecord::Schema.define(version: 20171016050315) do
 
   create_table "bill_templates", force: :cascade do |t|
     t.string   "name"
@@ -33,9 +33,10 @@ ActiveRecord::Schema.define(version: 20171001223834) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
-    t.decimal  "budget"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.float    "amount",        default: 0.0
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.string   "category_type", default: "BUDGET"
   end
 
   create_table "reminder_templates", force: :cascade do |t|

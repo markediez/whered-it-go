@@ -2,9 +2,9 @@ class Category < ApplicationRecord
 	include SiteHelper
 	has_many :transactions
 
-	def funds
-		self.budget = 0 if self.budget.nil?
+	validates :category_type, inclusion: { in: %w(BUDGET GOAL), message: "${value} is not a valid type" }
 
+	def funds
 		transactions = Transaction.where({
 			:created_at => DateTime.now.beginning_of_month..DateTime.now.end_of_month,
 			:category_id => self.id
@@ -16,6 +16,6 @@ class Category < ApplicationRecord
 			activity -= t.amount if t.payment_type == "EARN"
 		end
 
-		return self.budget - activity
+		return self.amount - activity
 	end
 end

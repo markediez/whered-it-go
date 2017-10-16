@@ -12,6 +12,22 @@
   </div>
 <% end %>
 
+<h1>Funds</h1>
+
+<h1>Goals</h1>
+<table>
+  <th>Name</th>
+  <th>Amount</th>
+  <th>Progress</th>
+  <% @goals.each do |goal| %>
+    <tr>
+      <td><%= goal.name %></td>
+      <td><%= number_to_currency goal.amount %></td>
+      <td><%= number_to_currency get_goal_progress(goal) %></td>
+    </tr>
+  <% end %>
+</table>
+
 <h1>Report</h1>
 <table>
   <th>Date</th>
@@ -79,26 +95,27 @@
   <% end %>
 </table>
 
-<h1>Categories</h1>
+<h1>Budget</h1>
 <table>
   <th>Category</th>
   <th>Budget</th>
   <th>Funds</th>
   <th colspan="2"></th>
-  <% @categories.each do |category| %>
+  <% @budgets.each do |budget| %>
     <tr>
-      <td><%= category.name %></td>
-      <td><%= number_to_currency category.budget %></td>
-      <td><%= number_to_currency category.funds %></td>
-      <td><%= link_to 'Edit', edit_category_path(category) %></td>
-      <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td><%= budget.name %></td>
+      <td><%= number_to_currency budget.amount %></td>
+      <td><%= number_to_currency budget.funds %></td>
+      <td><%= link_to 'Edit', edit_category_path(budget) %></td>
+      <td><%= link_to 'Destroy', budget, method: :delete, data: { confirm: 'Are you sure?' } %></td>
     </tr>
   <% end %>
   <%= form_for Category.new do |f| %>
     <tr>
       <td><%= f.text_field :name %></td>
-      <td><%= f.number_field :budget, step: "0.01" %></td>
-      <td colspan="2"><%= f.submit %>
+      <td><%= f.number_field :amount, step: "0.01" %></td>
+      <td><%= f.select :category_type, ["BUDGET", "GOAL"], include_blank: false %>
+      <td><%= f.submit %>
     </tr>
   <% end %>
 </table>
