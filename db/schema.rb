@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171018023745) do
+ActiveRecord::Schema.define(version: 20171018024118) do
 
   create_table "bill_templates", force: :cascade do |t|
     t.string   "name"
@@ -66,7 +66,7 @@ ActiveRecord::Schema.define(version: 20171018023745) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "username",                                     null: false
+    t.string   "email",                                        null: false
     t.string   "password",                                     null: false
     t.float    "funds",        default: 0.0
     t.datetime "funds_set_at", default: '2017-10-18 02:40:12'
