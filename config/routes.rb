@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :users
   resources :bill_templates
   resources :reminder_templates
   resources :bills

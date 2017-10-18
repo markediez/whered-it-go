@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171016050315) do
+ActiveRecord::Schema.define(version: 20171018023745) do
 
   create_table "bill_templates", force: :cascade do |t|
     t.string   "name"
@@ -63,6 +63,15 @@ ActiveRecord::Schema.define(version: 20171016050315) do
     t.integer  "category_id"
     t.string   "payment_type", default: "PAY", null: false
     t.integer  "bill_id",      default: 0
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "username",                                     null: false
+    t.string   "password",                                     null: false
+    t.float    "funds",        default: 0.0
+    t.datetime "funds_set_at", default: '2017-10-18 02:40:12'
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
   end
 
 end
