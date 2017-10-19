@@ -1,6 +1,6 @@
 module SiteHelper
   def get_goal_progress(goal)
-    transactions = Transaction.where(:category_id => goal.id).where(:created_at => get_date_range(goal.created_at, DateTime.now))
+    transactions = Transaction.where(:category_id => goal.id)
 
     progress = 0
     transactions.map { |t| progress += t.amount }
