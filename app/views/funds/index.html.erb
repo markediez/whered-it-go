@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Users</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Funds</th>
+      <th>Funds set at</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @funds.each do |fund| %>
+      <tr>
+        <td><%= fund.funds %></td>
+        <td><%= fund.funds_set_at %></td>
+        <td><%= link_to 'Show', fund %></td>
+        <td><%= link_to 'Edit', edit_fund_path(fund) %></td>
+        <td><%= link_to 'Destroy', fund, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Fund', new_fund_path %>
