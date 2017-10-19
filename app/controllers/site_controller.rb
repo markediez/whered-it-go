@@ -2,7 +2,7 @@ class SiteController < ApplicationController
   include SiteHelper
 
   def index
-    @current_user = User.first
+    @fund = Fund.first
     @transactions = Transaction.all
     @budgets = Category.where(:category_type => "BUDGET")
     @goals = Category.where(:category_type => "GOAL")

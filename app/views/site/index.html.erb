@@ -13,8 +13,8 @@
 <% end %>
 
 <h1>Funds</h1>
-<%= number_to_currency @current_user.balance %>
-<%= link_to 'Edit', edit_user_path(@current_user) %>
+<%= number_to_currency @fund.balance %>
+<%= link_to 'Edit', edit_fund_path(@fund) %>
 <h1>Goals</h1>
 <table>
   <th>Name</th>

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :users
+  resources :funds
   resources :bill_templates
   resources :reminder_templates
   resources :bills
