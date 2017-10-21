@@ -21,7 +21,7 @@
   <th>Amount</th>
   <th>Progress</th>
   <% @goals.each do |goal| %>
-    <tr>
+    <tr class="<%= "done" if goal.met? %>">
       <td><%= goal.name %></td>
       <td><%= number_to_currency goal.amount %></td>
       <td><%= number_to_currency get_goal_progress(goal) %></td>
