@@ -15,6 +15,7 @@ class ReminderTemplatesController < ApplicationController
   # GET /reminder_templates/new
   def new
     @reminder_template = ReminderTemplate.new
+    @reminder_template.bill_templates.build
   end
 
   # GET /reminder_templates/1/edit

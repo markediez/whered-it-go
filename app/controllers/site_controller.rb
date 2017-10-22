@@ -14,6 +14,7 @@ class SiteController < ApplicationController
   end
 
   def templates
+    @reminder_template = ReminderTemplate.new
     @reminder_templates = ReminderTemplate.all
   end
 end

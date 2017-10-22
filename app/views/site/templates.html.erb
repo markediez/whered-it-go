@@ -1,20 +1,5 @@
 <h1>Add Reminder</h1>
-<%= form_for ReminderTemplate.new do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-
-  <%= f.label :frequency %>
-  <%= f.text_field :frequency %>
-
-  <div class="form-group">
-  <%= f.fields_for :bill_templates do |builder| %>
-    <%= render partial: 'bill_template_fields', locals: { f: builder } %>
-  <% end %>
-    <%= link_to_add_fields 'Add Bills', f, :bill_templates %>
-    <%= f.submit %>
-  </div>
-
-<% end %>
+<%= render partial: 'reminder_templates/form', locals: { reminder_template: @reminder_template } %>
 
 <h1>Recurring Reminders</h1>
 <table>

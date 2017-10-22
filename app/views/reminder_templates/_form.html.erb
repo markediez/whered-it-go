@@ -26,6 +26,14 @@
     <%= f.datetime_select :triggered_at %>
   </div>
 
+  <div class="form-group">
+  <%= f.fields_for :bill_templates do |builder| %>
+    <%= render partial: 'bill_template_fields', locals: { f: builder } %>
+  <% end %>
+  <%= link_to_add_fields 'Add Bills', f, :bill_templates %>
+  </div>
+
+
   <div class="actions">
     <%= f.submit %>
   </div>
