@@ -7,7 +7,7 @@ class SiteController < ApplicationController
     @budgets = Category.where(:category_type => "BUDGET")
     @goals = Category.where(:category_type => "GOAL")
     @reminders = Reminder.where archived: false
-    @bills = Bill.all
+    @bills = Bill.where archived: false
     @errors = flash[:error]
 
     trigger_templates(DateTime.now)
