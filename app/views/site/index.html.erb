@@ -80,7 +80,7 @@
     <tr class="<%= "done" if bill.paid? %>">
       <td><%= bill.reminder.nil? ? "-" : bill.reminder.name %></td>
       <td><%= bill.name %></td>
-      <td><%= number_to_currency bill.total_amount %></td>
+      <td><%= bill.amount.nil? ? "~" : number_to_currency(bill.total_amount) %></td>
       <td><%= link_to bill.url, bill.url, target: :_blank %></td>
       <td><%= link_to 'Edit', edit_bill_path(bill) %></td>
       <td><%= link_to 'Archive', bill_path(bill, bill: { archived: true } ), method: :put %></td>

@@ -4,6 +4,7 @@ class Bill < ApplicationRecord
   before_validation :add_url_protocol
 
   def paid?
+    return false if self.amount.nil?
     total_paid = 0
     self.transactions.each do |transaction|
       total_paid = transaction.payment? ? total_paid + transaction.amount : total_paid - transaction.amount
