@@ -13,6 +13,7 @@ class Category < ApplicationRecord
 		activity = 0
 		transactions.each do |t|
 			activity += t.amount if t.payment_type == "PAY"
+			activity += t.amount if t.payment_type == "CREDIT"
 			activity -= t.amount if t.payment_type == "EARN"
 		end
 

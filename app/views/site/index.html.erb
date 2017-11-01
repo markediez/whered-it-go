@@ -13,7 +13,8 @@
 <% end %>
 
 <h1>Funds</h1>
-<%= number_to_currency @fund.balance %>
+<%= number_to_currency(@fund.total_balance - get_total_credit) %>
+<span>(<%= number_to_currency get_total_credit %>)</span>
 <%= link_to 'Edit', edit_fund_path(@fund) %>
 <h1>Goals</h1>
 <table>
@@ -79,7 +80,7 @@
     <tr class="<%= "done" if bill.paid? %>">
       <td><%= bill.reminder.nil? ? "-" : bill.reminder.name %></td>
       <td><%= bill.name %></td>
-      <td><%= number_to_currency bill.amount %></td>
+      <td><%= number_to_currency bill.total_amount %></td>
       <td><%= link_to bill.url, bill.url, target: :_blank %></td>
       <td><%= link_to 'Edit', edit_bill_path(bill) %></td>
       <td><%= link_to 'Archive', bill_path(bill, bill: { archived: true } ), method: :put %></td>
@@ -146,7 +147,7 @@
   <%= form_for Transaction.new do |f| %>
     <tr>
       <td></td>
-      <td><%= f.select :payment_type, ["PAY", "EARN"], include_blank: false %>
+      <td><%= f.select :payment_type, ["PAY", "EARN", "CREDIT"], include_blank: false %></td>
       <td><%= f.select :category_id, Category.all.collect { |c| [c.name, c.id] }, include_blank: true %></td>
       <td><%= f.text_field :name %></td>
       <td><%= f.number_field :amount, step: "0.01" %></td>

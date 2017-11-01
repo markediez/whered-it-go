@@ -21,4 +21,26 @@ module ApplicationHelper
 
     content_tag :a, name, html_options, &block
   end
+
+  def get_total_credit
+    total_credit = 0
+    Bill.where(archived: false).each do |bill|
+      has_credit = false
+      bill.transactions.each do |t|
+        has_credit = true if t.credit?
+
+        if has_credit
+          total_credit += t.amount if t.credit?
+          total_credit -= t.amount if t.payment?
+        end
+
+        if total_credit <= 0
+          total_credit = 0
+          has_credit = false
+        end
+      end
+    end
+
+    return total_credit
+  end
 end

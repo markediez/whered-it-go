@@ -26,6 +26,16 @@
 	<%= f.select :category_id, Category.all.collect { |c| [c.name, c.id] }, include_blank: true %>
   </div>
 
+  <div class="field">
+    <%= f.label :payement_type %>
+    <%= f.select :payment_type, ["PAY", "EARN", "CREDIT"], include_blank: false %>
+  </div>
+
+  <div class="field">
+    <%= f.label :bill_id %>
+    <%= f.select :bill_id, Bill.where(:archived => false).collect { |b| [b.name, b.id] }, include_blank: true %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

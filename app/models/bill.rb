@@ -12,6 +12,20 @@ class Bill < ApplicationRecord
     return total_paid >= self.amount
   end
 
+  def total_amount
+    return self.amount + get_balance(:CREDIT)
+  end
+
+  def get_balance(type)
+    type = type.to_s
+    raise ArgumentError.new "Invalid 'type' #{type} must be :PAY | :EARN | :CREDIT" unless Transaction::PAYMENT_TYPES.include? type
+
+    balance = 0
+    self.transactions.where(:payment_type => type).map { |t| balance += t.amount }
+
+    return balance
+  end
+
   protected
   def add_url_protocol
     unless self.url[/\Ahttp:\/\//] || self.url[/\Ahttps:\/\//] || self.url == "#"
