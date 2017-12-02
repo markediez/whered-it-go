@@ -13,7 +13,7 @@ class Fund < ApplicationRecord
     raise ArgumentError.new "Invalid 'type' #{type} must be :PAY | :EARN | :CREDIT" unless Transaction::PAYMENT_TYPES.include? type
 
     balance = 0
-    Transaction.where(:payment_type => type).where(created_at: get_date_range(self.amount_set_at)).map { |t| balance += t.amount }
+    Transaction.where(:payment_type => type).where(created_at: get_date_range(self.updated_at)).map { |t| balance += t.amount }
 
     return balance
   end
