@@ -4,20 +4,27 @@ class Bill < ApplicationRecord
   before_validation :add_url_protocol
 
   def paid?
-    return false if self.amount.nil?
-    total_paid = 0
-    self.transactions.each do |transaction|
-      total_paid = transaction.payment? ? total_paid + transaction.amount : total_paid - transaction.amount
+    return self.amount.nil? ? false : balance <= 0
+  end
+
+  def balance
+    balance = self.amount
+    self.transactions.each do |t|
+      if t.credit?
+        balance += t.amount
+      else
+        balance -= t.amount
+      end
     end
 
-    return total_paid >= self.amount
+    return balance
   end
 
   def total_amount
-    return self.amount + get_balance(:CREDIT)
+    return self.amount + get_amount(:CREDIT)
   end
 
-  def get_balance(type)
+  def get_amount(type)
     type = type.to_s
     raise ArgumentError.new "Invalid 'type' #{type} must be :PAY | :EARN | :CREDIT" unless Transaction::PAYMENT_TYPES.include? type
 
