@@ -3,7 +3,7 @@ class SiteController < ApplicationController
 
   def index
     @fund = Fund.first
-    @transactions = Transaction.all
+    @transactions = Transaction.all.order(created_at: :desc ).limit 10
     @budgets = Category.where(:category_type => "BUDGET")
     @goals = Category.where(:category_type => "GOAL")
     @reminders = Reminder.where archived: false
